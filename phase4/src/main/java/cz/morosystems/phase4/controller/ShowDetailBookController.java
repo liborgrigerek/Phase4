@@ -34,15 +34,16 @@ public class ShowDetailBookController {
 	{
 		model.addAttribute("user", userManager.getUser(userId));
 		model.addAttribute("book", new BookEntity());
-		return "editBook";
+		return "addBook";
 	}
 	
 	@RequestMapping(value = "/add/{userId}", method = RequestMethod.POST)
-	public String submitAddBookForm(@PathVariable("userId") Integer userId, @ModelAttribute(value="book")@Valid BookEntity book, BindingResult addBookFormBindingResult) 
+	public String submitAddBookForm(@PathVariable("userId") Integer userId, @ModelAttribute(value="book")@Valid BookEntity book, BindingResult addBookFormBindingResult, Model model) 
 	{
 		// osetri vysledek kontroly validatoru
 		if(addBookFormBindingResult.hasErrors()) {
-			return "editBook";
+			model.addAttribute("user",userManager.getUser(userId));
+			return "addBook";
 		}
 		// pridej uzivatele
 		bookManager.addBook(book);
@@ -55,6 +56,19 @@ public class ShowDetailBookController {
 		model.addAttribute("user", userManager.getUser(userId));
 		model.addAttribute("book", bookManager.getBook(bookId));
 		return "editBook";
+	}
+	
+	@RequestMapping(value = "/edit/{userId}/{bookId}", method = RequestMethod.POST)
+	public String submitEditBookForm(@PathVariable("userId") Integer userId, @PathVariable("bookId") Integer bookId, @ModelAttribute(value="book")@Valid BookEntity book, BindingResult editBookFormBindingResult, Model model) 
+	{
+		// osetri vysledek kontroly validatoru
+		if(editBookFormBindingResult.hasErrors()) {
+			model.addAttribute("user", userManager.getUser(userId));
+			return "editBook";
+		}
+		// pridej uzivatele
+		bookManager.editBook(book);
+		return String.format("redirect:/admin/detail/%d", userId);
 	}
 
 	@RequestMapping("/delete/{userId}/{bookId}")

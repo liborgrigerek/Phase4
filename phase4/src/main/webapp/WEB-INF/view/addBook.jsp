@@ -32,7 +32,7 @@
         </table>
     </section>
     <section class="container">
-        <form:form method="post" action="/phase4/admin/detail/book/edit/${user.id}/${book.id}" commandName="book" class="form-horizontal">
+        <form:form method="post" action="/phase4/admin/detail/book/add/${user.id}" commandName="book" class="form-horizontal">
         <form:errors path="*" cssClass="alert alert-danger" element="div" />
             <fieldset>
                 <legend>Book properties</legend>
@@ -56,7 +56,7 @@
 
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                        <input type="submit" id="btnAdd" class="btn btn-primary" value="Modify book" />
+                        <input type="submit" id="btnAdd" class="btn btn-primary" value="Add book" />
                     </div>
                 </div>
             </fieldset>

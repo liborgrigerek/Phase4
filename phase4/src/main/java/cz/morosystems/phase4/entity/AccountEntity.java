@@ -26,22 +26,19 @@ public class AccountEntity {
 	@Column(name="USERID")
 	private Integer userId;
 	
-	//@NotNull(message = "Name can not be empty.")
+	@Pattern(regexp = "[a-zA-Z0-9 ]+", message = "Name can not be empty and can have alphanumerical characters only.")
 	@Column(name="NAME")
 	private String name;
 	
-	//@NotNull(message = "Prefix can not be empty.")
-	//@Pattern(regexp = "[0-9]+", message = "Prefix can have numeric characters only.")
+	@Pattern(regexp = "[0-9]*", message = "Prefix can have numeric characters only.")
 	@Column(name="ACCOUNTPREFIX")
 	private String accountPrefix;
 	
-	//@NotNull(message = "Number can not be empty.")
-	//@Pattern(regexp = "[0-9]+", message = "Number can have numeric characters only.")
+	@Pattern(regexp = "[0-9]+", message = "Number can not be empty and can have numeric characters only.")
 	@Column(name="ACCOUNTNUMBER")
 	private String accountNumber;
 	
-	//@NotNull(message = "Code can not be empty.")
-	//@Pattern(regexp = "[0-9]+", message = "Code can have numeric characters only.")
+	@Pattern(regexp = "[0-9]+", message = "Code can not be empty and can have numeric characters only.")
 	@Column(name="BANKCODE")
 	private String bankCode;
 

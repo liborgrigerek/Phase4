@@ -17,7 +17,7 @@
 		</div>
 	</section>
 	<section class="container">
-		<form:form method="post" action="/phase4/admin/detail/account/edit/${user.id}/${account.id}" commandName="account"
+		<form:form method="post" action="/phase4/admin/detail/account/add/${user.id}" commandName="account"
 			class="form-horizontal">
 			<form:errors path="*" cssClass="alert alert-danger" element="div" />
 			<fieldset>
@@ -63,7 +63,7 @@
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
 							<input type="submit" id="btnAdd" class="btn btn-primary"
-								value="Modify account" />
+								value="Add account" />
 					</div>
 				</div>
 			</fieldset>

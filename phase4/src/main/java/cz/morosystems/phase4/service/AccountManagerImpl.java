@@ -33,6 +33,11 @@ public class AccountManagerImpl implements AccountManager {
 	}
 	
 	@Transactional
+	public void editAccount(AccountEntity account) {
+		accountDAO.editAccount(account);
+	}
+	
+	@Transactional
 	public void deleteAccount(Integer accountId) {
 		accountDAO.deleteAccount(accountId);
 	}

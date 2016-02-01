@@ -28,13 +28,13 @@ public class BookDaoImpl implements BookDAO  {
 	}
 	@Transactional
 	public void addBook(BookEntity book) {
-		if (book.getId() == null) {
-			// nova kniha
-			this.sessionFactory.getCurrentSession().save(book);
-		} else {
-			// editace knihy
-			this.sessionFactory.getCurrentSession().merge(book);
-		}
+		// nova kniha
+		this.sessionFactory.getCurrentSession().save(book);
+	}
+	@Transactional
+	public void editBook(BookEntity book) {
+		// editace knihy
+		this.sessionFactory.getCurrentSession().merge(book);
 	}
 	@Transactional
 	public void deleteBook(Integer bookId) {

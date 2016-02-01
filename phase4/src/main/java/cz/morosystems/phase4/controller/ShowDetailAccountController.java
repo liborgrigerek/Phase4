@@ -35,17 +35,18 @@ public class ShowDetailAccountController {
 	{
 		model.addAttribute("user", userManager.getUser(userId));
 		model.addAttribute("account", new AccountEntity());
-		return "editAccount";
+		return "addAccount";
 	}
 	
 	@RequestMapping(value = "/add/{userId}", method = RequestMethod.POST)
-	public String submitAddAccountForm(@PathVariable("userId") Integer userId, @ModelAttribute(value="account")@Valid AccountEntity account, BindingResult addAccountFormBindingResult) 
+	public String submitAddAccountForm(@PathVariable("userId") Integer userId, @ModelAttribute(value="account")@Valid AccountEntity account, BindingResult addAccountFormBindingResult, Model model) 
 	{
 		// osetri vysledek kontroly validatoru
 		if(addAccountFormBindingResult.hasErrors()) {
-			return "editAccount";
+			model.addAttribute("user", userManager.getUser(userId));
+			return "addAccount";
 		}
-		// pridej uzivatele
+		// pridej ucet
 		accountManager.addAccount(account);
 		return String.format("redirect:/admin/detail/%d", userId);
 	}
@@ -56,6 +57,19 @@ public class ShowDetailAccountController {
 		model.addAttribute("user", userManager.getUser(userId));
 		model.addAttribute("account", accountManager.getAccount(accountId));
 		return "editAccount";
+	}
+	
+	@RequestMapping(value = "/edit/{userId}/{accountId}", method = RequestMethod.POST)
+	public String submitEditAccountForm(@PathVariable("userId") Integer userId, @PathVariable("accountId") Integer accountId, @ModelAttribute(value="account")@Valid AccountEntity account, BindingResult editAccountFormBindingResult, Model model) 
+	{
+		// osetri vysledek kontroly validatoru
+		if(editAccountFormBindingResult.hasErrors()) {
+			model.addAttribute("user", userManager.getUser(userId));
+			return "editAccount";
+		}
+		// edituj ucet
+		accountManager.editAccount(account);
+		return String.format("redirect:/admin/detail/%d", userId);
 	}
 
 	@RequestMapping("/delete/{userId}/{accountId}")

@@ -29,13 +29,13 @@ public class AccountDaoImpl implements AccountDAO  {
 	}
 	@Transactional
 	public void addAccount(AccountEntity account) {
-		if (account.getId() == null) {
-			// novy ucet
-			this.sessionFactory.getCurrentSession().save(account);
-		} else {
-			// editace uctu
-			this.sessionFactory.getCurrentSession().merge(account);
-		}
+		// novy ucet
+		this.sessionFactory.getCurrentSession().save(account);
+	}
+	@Transactional
+	public void editAccount(AccountEntity account) {
+		// editace uctu
+		this.sessionFactory.getCurrentSession().merge(account);
 	}
 	@Transactional
 	public void deleteAccount(Integer accountId) {

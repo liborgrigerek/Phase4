@@ -33,6 +33,11 @@ public class BookManagerImpl implements BookManager {
 	}
 	
 	@Transactional
+	public void editBook(BookEntity book) {
+		bookDAO.editBook(book);
+	}
+	
+	@Transactional
 	public void deleteBook(Integer bookId) {
 		bookDAO.deleteBook(bookId);
 	}

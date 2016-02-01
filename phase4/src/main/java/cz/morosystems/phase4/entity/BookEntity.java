@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "BOOKTABLE")
@@ -25,11 +26,11 @@ public class BookEntity {
 	@Column(name="USERID")
 	private Integer userId;
 
-	//@NotNull(message = "Title can not be empty.")
+	@Pattern(regexp = "[a-zA-Z0-9 ]+", message = "Title can not be empty and can have alphanumerical characters only.")
 	@Column(name = "TITLE")
 	private String title;
 
-	//@NotNull(message = "Description can not be empty.")
+	@Pattern(regexp = "[a-zA-Z0-9 ]+", message = "Description can not be empty and can have alphanumerical characters only.")
 	@Column(name = "DESCRIPTION")
 	private String description;
 
