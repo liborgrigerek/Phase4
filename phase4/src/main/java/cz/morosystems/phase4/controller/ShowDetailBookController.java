@@ -46,7 +46,10 @@ public class ShowDetailBookController {
 			return "addBook";
 		}
 		// pridej uzivatele
-		bookManager.addBook(book);
+		// pridej knihu k uzivateli
+		UserEntity user = userManager.getUser(userId);
+		user.getBooks().add(book);
+		userManager.editUser(user);
 		return String.format("redirect:/admin/detail/%d", userId);
 	}
 	

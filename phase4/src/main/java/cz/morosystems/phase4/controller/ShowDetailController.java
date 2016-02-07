@@ -25,35 +25,14 @@ public class ShowDetailController {
 	
 	@Autowired
 	private UserManager userManager;
-	
-	@Autowired
-	private BookManager bookManager;
-
-	@Autowired
-	private AccountManager accountManager;
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
 	public String listDetail(@PathVariable("userId") Integer userId, Model model) 
 	{
-		model.addAttribute("user", userManager.getUser(userId));
-		model.addAttribute("bookList", bookManager.getAllBooks(userId));
-		model.addAttribute("accountList", accountManager.getAllAccounts(userId));
+		UserEntity user = userManager.getUser(userId);
+		model.addAttribute("user", user);
+		model.addAttribute("bookList", user.getBooks());
+		model.addAttribute("accountList", user.getAccounts());
 		return "detailList";
-	}
-
-	public BookManager getBookManager() {
-		return bookManager;
-	}
-
-	public void setBookManager(BookManager bookManager) {
-		this.bookManager = bookManager;
-	}
-
-	public AccountManager getAccountManager() {
-		return accountManager;
-	}
-
-	public void setAccountManager(AccountManager accountManager) {
-		this.accountManager = accountManager;
 	}
 }

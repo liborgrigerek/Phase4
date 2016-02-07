@@ -44,8 +44,12 @@ public class ShowUserController {
 		if(result.hasErrors()) {
 			return "editUser";
 		}
-		// pridej uzivatele
-		userManager.addUser(user);
+		// pridej uzivatele nebo ho edituj
+		if (user.getId() == null) {
+			userManager.addUser(user);			
+		} else {
+			userManager.editUser(user);
+		}
 		return "redirect:/admin/";
 	}
 

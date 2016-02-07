@@ -18,11 +18,6 @@ public class AccountManagerImpl implements AccountManager {
     private AccountDAO accountDAO;
 
 	@Transactional
-	public List<AccountEntity> getAllAccounts(Integer userId) {
-		return accountDAO.getAllAccounts(userId);
-	}
-
-	@Transactional
 	public AccountEntity getAccount(Integer accountId) {
 		return accountDAO.getAccount(accountId);
 	}

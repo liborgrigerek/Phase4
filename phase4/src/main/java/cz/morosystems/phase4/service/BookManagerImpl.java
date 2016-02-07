@@ -18,11 +18,6 @@ public class BookManagerImpl implements BookManager {
     private BookDAO bookDAO;
 
 	@Transactional
-	public List<BookEntity> getAllBooks(Integer userId) {
-		return bookDAO.getAllBooks(userId);
-	}
-
-	@Transactional
 	public BookEntity getBook(Integer bookId) {
 		return bookDAO.getBook(bookId);
 	}

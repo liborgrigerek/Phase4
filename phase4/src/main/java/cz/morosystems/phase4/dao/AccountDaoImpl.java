@@ -19,11 +19,6 @@ public class AccountDaoImpl implements AccountDAO  {
     private SessionFactory sessionFactory;
 	
 	@Transactional
-	@SuppressWarnings("unchecked")
-	public List<AccountEntity> getAllAccounts(Integer userId) {
-		return this.sessionFactory.getCurrentSession().createCriteria(AccountEntity.class).add(Restrictions.eq("userId",userId)).addOrder(Order.asc("id")).list();
-	}
-	@Transactional
 	public AccountEntity getAccount(Integer accountId) {
 		return (AccountEntity) this.sessionFactory.getCurrentSession().createQuery("from AccountEntity account where account.id = :accountId").setParameter("accountId", accountId).uniqueResult();
 	}

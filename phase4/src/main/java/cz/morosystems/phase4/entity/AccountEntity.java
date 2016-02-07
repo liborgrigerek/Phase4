@@ -23,9 +23,6 @@ public class AccountEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name="USERID")
-	private Integer userId;
-	
 	@Pattern(regexp = "[a-zA-Z0-9 ]+", message = "Name can not be empty and can have alphanumerical characters only.")
 	@Column(name="NAME")
 	private String name;
@@ -46,10 +43,6 @@ public class AccountEntity {
 		return id;
 	}
 
-	public Integer getUserId() {
-		return userId;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -68,10 +61,6 @@ public class AccountEntity {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
 	}
 
 	public void setName(String name) {

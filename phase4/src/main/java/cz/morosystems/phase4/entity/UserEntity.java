@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -54,12 +55,12 @@ public class UserEntity implements Serializable {
 	@Column(name = "TELEPHONE")
 	private String telephone;
 
-	@ManyToMany(targetEntity = cz.morosystems.phase4.entity.BookEntity.class, cascade = { CascadeType.ALL })
+	@ManyToMany(fetch=FetchType.EAGER, targetEntity = cz.morosystems.phase4.entity.BookEntity.class, cascade = { CascadeType.ALL })
 	// definice spojeni - tabulka user_book_table musi existovat a obsahuje primarni klice obou tabulek - viz. definice tabulek v readme-db.txt
 	@JoinTable(name = "USERS_BOOKS_TABLE", joinColumns = @JoinColumn(name = "USERID") , inverseJoinColumns = @JoinColumn(name = "BOOKID") )
 	private Set<BookEntity> books;
 
-	@OneToMany(targetEntity = cz.morosystems.phase4.entity.AccountEntity.class, cascade = { CascadeType.ALL})
+	@OneToMany(fetch=FetchType.EAGER, targetEntity = cz.morosystems.phase4.entity.AccountEntity.class, cascade = { CascadeType.ALL})
 	@JoinTable(name = "USER_ACCOUNTS_TABLE", joinColumns = @JoinColumn(name = "USERID") , inverseJoinColumns = @JoinColumn(name = "ACCOUNTID") )
 	private Set<AccountEntity> accounts;
 
@@ -82,9 +83,13 @@ public class UserEntity implements Serializable {
 	public String getTelephone() {
 		return telephone;
 	}
-
+	
 	public Set<BookEntity> getBooks() {
 		return books;
+	}
+	
+	public Set<AccountEntity> getAccounts() {
+		return accounts;
 	}
 
 	public void setId(Integer id) {
@@ -109,5 +114,9 @@ public class UserEntity implements Serializable {
 
 	public void setBooks(Set<BookEntity> books) {
 		this.books = books;
+	}
+	
+	public void setAccounts(Set<AccountEntity> accounts) {
+		this.accounts = accounts;
 	}
 }

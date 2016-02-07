@@ -31,6 +31,11 @@ public class UserManagerImpl implements UserManager {
 	}
 	
 	@Transactional
+	public void editUser(UserEntity user) {
+		userDAO.editUser(user);
+	}
+	
+	@Transactional
 	public void deleteUser(Integer userId) {
 		userDAO.deleteUser(userId);
 	}

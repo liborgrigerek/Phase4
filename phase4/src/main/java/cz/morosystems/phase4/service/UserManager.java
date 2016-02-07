@@ -8,5 +8,6 @@ public interface UserManager {
 	public UserEntity getUser(Integer id);
     public List<UserEntity> getAllUsers();
     public void addUser(UserEntity user);
+    public void editUser(UserEntity user);
     public void deleteUser(Integer userId);
 }

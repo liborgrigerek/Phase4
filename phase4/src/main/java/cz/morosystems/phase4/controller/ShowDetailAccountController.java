@@ -46,8 +46,10 @@ public class ShowDetailAccountController {
 			model.addAttribute("user", userManager.getUser(userId));
 			return "addAccount";
 		}
-		// pridej ucet
-		accountManager.addAccount(account);
+		// pridej ucet k uzivateli
+		UserEntity user = userManager.getUser(userId);
+		user.getAccounts().add(account);
+		userManager.editUser(user);
 		return String.format("redirect:/admin/detail/%d", userId);
 	}
 	
